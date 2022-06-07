@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column        | Type       | Options                        | 
-| ------------- | ---------- | ------------------------------ |
-| name          | string     | null: false                    |
-| profile       | text       | null: false                    | 
-| category_id   | integer    | null: false                    |
-| status_id     | integer    | null: false                    |
-| price_id      | integer    | null: false                    |
-| place_id      | integer    | null: false                    |
-| days_id       | integer    | null: false                    |
-| price         | integer    | null: false                    |
-| user          | references | null :false, foreign_key: true |
+| Column                 | Type       | Options                        | 
+| ---------------------- | ---------- | ------------------------------ |
+| name                   | string     | null: false                    |
+| profile                | text       | null: false                    | 
+| category_id            | integer    | null: false                    |
+| status_id              | integer    | null: false                    |
+| send_price_id          | integer    | null: false                    |
+| place_id               | integer    | null: false                    |
+| scheduled_day_id       | integer    | null: false                    |
+| price                  | integer    | null: false                    |
+| user                   | references | null :false, foreign_key: true |
 
 ### Association
 
