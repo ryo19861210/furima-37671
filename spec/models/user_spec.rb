@@ -9,10 +9,10 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
     end
-    
+
     context 'ユーザー登録ができない場合' do
       it 'nameが空では登録できない' do
-        @user.name =''
+        @user.name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Name can't be blank")
       end
@@ -37,18 +37,18 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailは@を含まないと登録できない' do
         @user.email = 'testmail'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが５文字以下では登録できない' do
         @user.password = '00000'
         @user.password_confirmation = '00000'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it '誕生日が空だと登録できない' do
         @user.birthday = ''
