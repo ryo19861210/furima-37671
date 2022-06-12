@@ -32,6 +32,44 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+      it '英字のみのパスワードでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password 英数字文字6以上")
+      end
+      it '数字のみのパスワードでは登録できない' do
+        @user.password = '123456'
+        @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password 英数字文字6以上")
+      end
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password = '12345ａ'
+        @user.password_confirmation = '12345ａ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password 英数字文字6以上")
+      end
+      it 'first_nameに半角文字が含まれていると登録できない' do
+        @user.first_name = 'abe'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+      end
+      it 'last_name半角文字が含まれていると登録できない' do
+        @user.last_name = 'ryo'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+      end
+      it 'first_name_kanaにカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
+        @user.first_name_kana = 'kana'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana 全角カタカナを使用してください")
+      end
+      it 'last_name_kanaにカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
+        @user.last_name_kana = 'kana'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana 全角カタカナを使用してください")
+      end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
