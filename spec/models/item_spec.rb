@@ -30,27 +30,27 @@ RSpec.describe Item, type: :model do
         it 'カテゴリーが未選択では登録できない' do
           @item.category_genre_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Category genre must be other than 1')
+          expect(@item.errors.full_messages).to include('Category genre が未選択では登録できません')
         end
         it '商品の状態が未選択では登録できない' do
           @item.status_genre_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Status genre must be other than 1')
+          expect(@item.errors.full_messages).to include('Status genre が未選択では登録できません')
         end
         it '配送料の負担が未選択では登録できない' do
           @item.send_price_genre_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Send price genre must be other than 1')
+          expect(@item.errors.full_messages).to include('Send price genre が未選択では登録できません')
         end
         it '発送元の地域が未選択では登録できない' do
           @item.place_genre_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Place genre must be other than 1')
+          expect(@item.errors.full_messages).to include('Place genre が未選択では登録できません')
         end
         it '発送までの発送までの日数が未選択では登録できない' do
           @item.scheduled_day_genre_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Scheduled day genre must be other than 1')
+          expect(@item.errors.full_messages).to include('Scheduled day genre が未選択では登録できません')
         end
         it '販売価格が空では登録できない' do
           @item.price = ''
