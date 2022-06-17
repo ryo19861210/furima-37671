@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :move_to_edit, only: [:edit]
+  before_action :move_to_index, only: [:edit]
+
   def index
     @items = Item.order('created_at DESC')
   end
@@ -42,7 +43,8 @@ class ItemsController < ApplicationController
                                  :scheduled_day_genre_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_edit
-    redirect_to root_path unless user_signed_in? && current_user == @user
+  def move_to_index
+    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 end
