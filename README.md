@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_many :orders
 
 ## items テーブル
 
@@ -35,12 +35,12 @@
 ### Association
 
 - belongs_to :user
-- has_one :buy
+- has_one :order
 
-## buys テーブル
+## orders テーブル
 
-| Column  | Type   | Options                        | 
-| ------- | ------ | ------------------------------ |
+| Column  | Type       | Options                        | 
+| ------- | ---------- | ------------------------------ |
 | item    | references | null: false, foreign_key: true |
 | user    | references | null: false, foreign_key: true |
 
@@ -48,9 +48,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :buyers_information
+- has_one :address
 
-## buyers_information テーブル
+## address テーブル
 
 | Column           | Type       | Options     | 
 | ---------------- | ---------- | ----------- |
@@ -60,8 +60,8 @@
 | number           | string     | null: false |
 | build_name       | string     |             |
 | phone_number     | string     | null: false |
-| buy              | references | null: false, foreign_key: true |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
--belongs_to :buy
+-belongs_to :order
