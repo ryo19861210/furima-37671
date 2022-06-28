@@ -42,17 +42,17 @@ RSpec.describe OrderAddress, type: :model do
     it '郵便番号は半角文字以外では登録できない' do
       @order_address.post_code = '１２３-４５６７'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Post code Post code is invalid. Enter it as follows (e.g. 123-4567)')
+      expect(@order_address.errors.full_messages).to include('Post code is invalid')
     end
     it '郵便番号はハイフンなしでは登録できない' do
       @order_address.post_code = '1234567'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Post code Post code is invalid. Enter it as follows (e.g. 123-4567)')
+      expect(@order_address.errors.full_messages).to include('Post code is invalid')
     end
     it '都道府県が空では登録できない' do
       @order_address.place_id = '1'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Place must be other than 1')
+      expect(@order_address.errors.full_messages).to include('Place は未選択では登録できません')
     end
     it '市区町村が未選択では登録できない' do
       @order_address.town = ''
@@ -72,22 +72,22 @@ RSpec.describe OrderAddress, type: :model do
     it '電話番号は9桁以下では登録できない' do
       @order_address.phone_number = '12345678'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid')
     end
     it '電話番号は12桁以上では登録できない' do
       @order_address.phone_number = '123456789012'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid')
     end
     it '電話番号は半角数値以外では登録できない' do
       @order_address.phone_number = '０８０６０９８２２３５'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid')
     end
     it '電話番号はハイフンがあると登録できない' do
       @order_address.phone_number = '080-6098-2235'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid')
     end
   end
 end
