@@ -33,6 +33,19 @@
   padding-left: 10px;
 }
 
+#form-result{
+  width: 30%;
+}
+
+.send {
+  margin-left: 5px;
+  border: 1px solid #dcdcdc;
+  background-color: #3ccace;;
+  font-size: 12px;
+  height: 5vh;
+  cursor: pointer;
+}
+
 .search-button {
   width: 5vh;
   border: 0;
