@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   resources :orders, only: [:index, :create]
+  resources :comments, only: :create
   end
   resources :cards, only: [:new, :create]
 end
